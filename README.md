@@ -51,24 +51,79 @@ SENTIO is the AI conductor that makes Sylvain cinema emotionally intelligent. It
 ## Architecture
 
 ```mermaid
-graph TD
-    A[Film Stream] --> B[Scene Analyzer]
-    B --> C[Visual Features]
-    B --> D[Audio Features]
-    B --> E[Narrative Structure]
+flowchart TD
+    subgraph INPUT["🎬 Film Stream"]
+        direction LR
+        VID["Video Frames\n240 fps decode"]
+        AUD["Audio Stream\n48 kHz · multichannel"]
+        META["Metadata\nTimecode · Chapter marks"]
+    end
 
-    C --> F[Emotion Classifier]
-    D --> F
-    E --> F
+    subgraph ANALYZE["🔍 sentio.analyzer"]
+        direction LR
+        SCENE["Scene Detector\nCut · Dissolve · Fade"]
+        VIS["Visual Features\nCNN backbone · 2048-d"]
+        AUDIO_F["Audio Features\nMel spectrogram · 512-d"]
+        NAR["Narrative Parser\nAct structure · Beats"]
+    end
 
-    F --> G[Emotional Arc Tracker]
-    G --> H[Orchestration Engine]
+    subgraph EMOTION["💜 sentio.emotion"]
+        direction TB
+        TRANS["NarrativeTransformer\n1.5T params · Multi-modal fusion"]
+        CLASS["Emotion Classifier\n6 dimensions · 98.7% accuracy"]
+        ARC["Arc Tracker\nTemporal smoothing · Trend detection"]
+        VA["Valence-Arousal\nContinuous mapping"]
+        TRANS --> CLASS --> ARC
+        TRANS --> VA
+    end
 
-    H --> I[SPECTRA]
-    H --> J[SONORA]
-    H --> K[STRATUM]
-    H --> L[Haptics]
+    subgraph CONDUCT["🎼 sentio.conductor"]
+        direction TB
+        ORCH["Orchestration Engine\n< 10 ms decision latency"]
+        RULES["Rule Engine\nEmotion → Subsystem mapping"]
+        SCHED["Scheduler\nPriority queue · Real-time dispatch"]
+        ORCH --> RULES --> SCHED
+    end
+
+    subgraph SUBSYSTEMS["📡 Subsystem Commands"]
+        direction LR
+        S_SPEC["🟡 SPECTRA\nBrightness · Color temp\nContrast emphasis"]
+        S_SON["🔵 SONORA\nReverb · Spatial width\nBass enhancement"]
+        S_STRAT["⚪ STRATUM\nDepth intensity\nLayer activation"]
+        S_HAP["🔴 HAPTICS\nPulse · Rumble\nFrequency · Duration"]
+    end
+
+    VID --> SCENE
+    VID --> VIS
+    AUD --> AUDIO_F
+    META --> NAR
+
+    SCENE --> TRANS
+    VIS --> TRANS
+    AUDIO_F --> TRANS
+    NAR --> TRANS
+
+    ARC --> ORCH
+    VA --> ORCH
+
+    SCHED --> S_SPEC
+    SCHED --> S_SON
+    SCHED --> S_STRAT
+    SCHED --> S_HAP
+
+    style INPUT fill:#1a1a2e,stroke:#a855f7,color:#fff
+    style ANALYZE fill:#1a1a2e,stroke:#7c3aed,color:#fff
+    style EMOTION fill:#1a1a2e,stroke:#a855f7,color:#fff
+    style CONDUCT fill:#1a1a2e,stroke:#c084fc,color:#fff
+    style SUBSYSTEMS fill:#0a0a0a,stroke:#a855f7,color:#fff,stroke-width:3px
+    style TRANS fill:#a855f7,stroke:#a855f7,color:#fff
+    style S_SPEC fill:#f59e0b,stroke:#f59e0b,color:#000
+    style S_SON fill:#06b6d4,stroke:#06b6d4,color:#000
+    style S_STRAT fill:#64748b,stroke:#64748b,color:#fff
+    style S_HAP fill:#ef4444,stroke:#ef4444,color:#fff
 ```
+
+> **Intelligence flow**: Film frames and audio are decoded → multi-modal features extracted in parallel → NarrativeTransformer (1.5T params) fuses features and classifies across 6 emotional dimensions at 98.7% accuracy → emotional arc tracker detects narrative trajectory → orchestration engine generates subsystem commands in <10ms → dispatched to SPECTRA, SONORA, STRATUM, and haptics in real-time.
 
 <br/>
 
