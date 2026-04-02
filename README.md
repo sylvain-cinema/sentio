@@ -1,36 +1,50 @@
-<![CDATA[<div align="center">
+<div align="center">
 
-```
-███████╗███████╗███╗   ██╗████████╗██╗ ██████╗
-██╔════╝██╔════╝████╗  ██║╚══██╔══╝██║██╔═══██╗
-███████╗█████╗  ██╔██╗ ██║   ██║   ██║██║   ██║
-╚════██║██╔══╝  ██║╚██╗██║   ██║   ██║██║   ██║
-███████║███████╗██║ ╚████║   ██║   ██║╚██████╔╝
-╚══════╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝ ╚═════╝
-```
+<img src="https://img.shields.io/badge/SYLVAIN-SENTIO-000000?style=for-the-badge&labelColor=a855f7&color=000000" alt="SENTIO" height="40"/>
 
-**The Soul of Sylvain — Empathic AI Narrative Intelligence**
+### The Soul of Sylvain
 
-[![CI](https://github.com/sylvain-cinema/sentio/actions/workflows/ci.yml/badge.svg)](https://github.com/sylvain-cinema/sentio/actions)
-[![License](https://img.shields.io/badge/License-Apache%202.0-gold.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/python-3.11+-blue.svg)](https://python.org)
+**Empathic AI · Narrative Intelligence Engine**
 
-*Real-time narrative intelligence that orchestrates all sensory systems — cinema that understands content and responds to emotional arcs.*
+<br/>
+
+[![CI](https://github.com/sylvain-cinema/sentio/actions/workflows/ci.yml/badge.svg)](https://github.com/sylvain-cinema/sentio/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/license-Apache%202.0-a855f7?style=flat-square)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.11+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.2+-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)](https://pytorch.org)
+[![Docs](https://img.shields.io/badge/docs-sylvain.github.io-f97316?style=flat-square)](https://sylvain-cinema.github.io)
+
+<br/>
+
+*Real-time narrative intelligence that orchestrates all sensory systems.*
+*Cinema that understands content and responds to emotional arcs.*
+*Powered by 50+ petaflops of Zhilicon Neural Engine processing.*
 
 </div>
 
+<br/>
+
 ---
+
+<br/>
 
 ## Overview
 
-SENTIO is the AI conductor that makes Sylvain cinema emotionally intelligent. Powered by the Zhilicon Neural Engine (50+ petaflops), it analyzes films in real-time — understanding pacing, story beats, emotional arcs, and narrative intent — then orchestrates SPECTRA (display), SONORA (audio), STRATUM (volumetric), and haptic systems to serve the story.
+SENTIO is the AI conductor that makes Sylvain cinema emotionally intelligent. It analyzes films in real-time — understanding pacing, story beats, emotional arcs, and narrative intent — then orchestrates **SPECTRA** (display), **SONORA** (audio), **STRATUM** (volumetric), and haptic systems to serve the story. Technology adapts to narrative, never the other way around.
 
-### Capabilities
+<br/>
 
-- **Scene Analysis**: Shot boundary detection, scene classification, visual/audio feature extraction
-- **Emotion Classification**: Multi-label emotion detection (joy, tension, sorrow, wonder, fear, excitement)
-- **Emotional Arc Tracking**: Temporal smoothing and narrative trajectory prediction
-- **Sensory Orchestration**: Real-time command generation for all Sylvain subsystems at 60fps
+## Capabilities
+
+<table>
+<tr><td><strong>Scene Analysis</strong></td><td>Shot boundary detection · Scene classification · Visual/audio feature extraction</td></tr>
+<tr><td><strong>Emotion Classification</strong></td><td>6 dimensions: joy · tension · sorrow · wonder · fear · excitement</td></tr>
+<tr><td><strong>Emotional Arc Tracking</strong></td><td>Temporal smoothing · Trend detection · Climax identification</td></tr>
+<tr><td><strong>Sensory Orchestration</strong></td><td>Real-time commands for all subsystems at 60 fps</td></tr>
+<tr><td><strong>Inference Speed</strong></td><td>&lt;16 ms per frame (60 fps real-time)</td></tr>
+</table>
+
+<br/>
 
 ## Architecture
 
@@ -48,37 +62,25 @@ graph TD
     F --> G[Emotional Arc Tracker]
     G --> H[Orchestration Engine]
 
-    H --> I[SPECTRA Commands]
-    H --> J[SONORA Commands]
-    H --> K[STRATUM Commands]
-    H --> L[Haptic Commands]
-
-    subgraph sentio.analyzer
-        B
-        C
-        D
-        E
-    end
-
-    subgraph sentio.emotion
-        F
-        G
-    end
-
-    subgraph sentio.conductor
-        H
-    end
+    H --> I[SPECTRA]
+    H --> J[SONORA]
+    H --> K[STRATUM]
+    H --> L[Haptics]
 ```
+
+<br/>
 
 ## Modules
 
 | Module | Description |
-|--------|-------------|
-| `sentio.analyzer` | Scene boundary detection, narrative structure, visual/audio feature extraction |
-| `sentio.emotion` | Transformer-based emotion classifier, emotional arc tracking, valence-arousal mapping |
-| `sentio.conductor` | Master orchestrator generating real-time commands for all subsystems |
-| `sentio.models` | Neural network architectures — NarrativeTransformer backbone |
-| `sentio.api` | gRPC server for real-time inference integration |
+|:-------|:------------|
+| **`sentio.analyzer`** | Scene boundary detection · Narrative structure · Visual & audio feature extraction |
+| **`sentio.emotion`** | Transformer-based emotion classifier · Emotional arc tracking · Valence-arousal mapping |
+| **`sentio.conductor`** | Master orchestrator · Real-time subsystem command generation |
+| **`sentio.models`** | NarrativeTransformer backbone · Task-specific heads |
+| **`sentio.api`** | gRPC server for real-time inference integration |
+
+<br/>
 
 ## Quick Start
 
@@ -92,31 +94,40 @@ classifier = EmotionClassifier.load_pretrained("sentio-base-v1")
 orchestrator = SensoryOrchestrator()
 
 for frame in film_stream:
-    features = analyzer.analyze(frame)
+    features = analyzer.analyze_frame(frame)
     emotions = classifier.predict(features)
     commands = orchestrator.generate(emotions)
-    # commands sent to SPECTRA, SONORA, STRATUM, haptics
+    # → commands dispatched to SPECTRA, SONORA, STRATUM, haptics
 ```
+
+<br/>
 
 ## Sylvain Ecosystem
 
-| Repository | Description |
-|-----------|-------------|
-| [spectra](https://github.com/sylvain-cinema/spectra) | 16K MicroLED Display Engine |
-| [sonora](https://github.com/sylvain-cinema/sonora) | Wave Field Synthesis Audio Engine |
-| **sentio** (this repo) | Empathic AI Narrative Intelligence |
-| [stratum](https://github.com/sylvain-cinema/stratum) | Volumetric Display System |
-| [sylvain-sdk](https://github.com/sylvain-cinema/sylvain-sdk) | Unified Developer SDK |
-| [content-pipeline](https://github.com/sylvain-cinema/content-pipeline) | Content Mastering Pipeline |
+<table>
+<tr><td>🟡</td><td><a href="https://github.com/sylvain-cinema/spectra"><strong>spectra</strong></a></td><td>16K MicroLED Display Engine</td></tr>
+<tr><td>🔵</td><td><a href="https://github.com/sylvain-cinema/sonora"><strong>sonora</strong></a></td><td>Wave Field Synthesis Audio Engine</td></tr>
+<tr><td>🟣</td><td><strong>sentio</strong></td><td>Empathic AI Narrative Intelligence</td><td><em>← you are here</em></td></tr>
+<tr><td>⚪</td><td><a href="https://github.com/sylvain-cinema/stratum"><strong>stratum</strong></a></td><td>Volumetric Display System</td></tr>
+<tr><td>🟠</td><td><a href="https://github.com/sylvain-cinema/sylvain-sdk"><strong>sylvain-sdk</strong></a></td><td>Unified Developer SDK</td></tr>
+<tr><td>📖</td><td><a href="https://github.com/sylvain-cinema/sylvain.github.io"><strong>docs</strong></a></td><td>Developer Documentation</td></tr>
+</table>
+
+<br/>
 
 ## License
 
-Apache License 2.0. See [LICENSE](LICENSE).
+Licensed under the [Apache License, Version 2.0](LICENSE).
+
+<br/>
 
 ---
 
 <div align="center">
-<strong>SYLVAIN</strong> — The Future of Cinematic Storytelling<br>
+<br/>
+
+<img src="https://img.shields.io/badge/SYLVAIN-The_Future_of_Cinematic_Storytelling-000000?style=for-the-badge&labelColor=a855f7&color=111111" alt="Sylvain"/>
+
 <sub>Technology that serves the story</sub>
+
 </div>
-]]>
